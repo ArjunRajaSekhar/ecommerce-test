@@ -36,10 +36,14 @@ class ContactForm(forms.Form):
             raise forms.ValidationError("email has to be gmail")
         return email
 
+
+
+
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
     
+
 
 class RegisterForm(forms.Form):
     username = forms.CharField()
@@ -75,3 +79,4 @@ class RegisterForm(forms.Form):
         if password2 != password:
             raise forms.ValidationError("passwords must match")
         return data
+

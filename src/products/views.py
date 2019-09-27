@@ -5,6 +5,22 @@ from django.shortcuts import render,get_object_or_404
 from .models import Product
 # Create your views here.
 
+class ProductFeaturedListView(ListView):
+    template_name = "products/list.html"
+    def get_queryset(self,*args,**kwargs):
+        request = self.request
+        return Product.objects.featured()
+
+
+class ProductFeaturedDetailView(DetailView):
+    # queryset = Product.objects.all()
+    template_name = "products/featured-detail.html"
+    def get_queryset(self,*args,**kwargs):
+        request = self.request
+        return Product.objects.featured()
+
+
+
 class ProductListView(ListView):
     template_name = "products/list.html"
 
@@ -23,6 +39,9 @@ def product_list_view(request):
         'object_list': queryset
     }
     return render(request, "products/list.html",context)
+
+
+
 
 class ProductDetailView(DetailView):
     # queryset = Product.objects.all()

@@ -13,12 +13,14 @@ def home_page(request):
         context["premium_content"] = "THIS IS PREMIUM CONTENT" 
     return render(request, "home_page.html" , context)
 
+
 def about_page(request):
     context ={
         "title":"ABOUT",
         "content":"The details about the page..."
     }
     return render(request, "home_page.html" , context)
+
 
 def contact_page(request):
     contact_form = ContactForm(request.POST or None)
@@ -35,6 +37,7 @@ def contact_page(request):
     #     print(request.POST.get('email'))
     #     print(request.POST.get('content'))
     return render(request, "contact/view.html" , context)
+
 
 def login_page(request):
     form = LoginForm(request.POST or None)
@@ -58,6 +61,7 @@ def login_page(request):
     return render(request, "auth/login.html",context)
 
 
+
 User=get_user_model()
 def register_page(request):
     form = RegisterForm(request.POST or None)
@@ -72,3 +76,6 @@ def register_page(request):
         new_user = User.objects.create_user(username,email,password)
         print(new_user)
     return render(request, "auth/register.html",context)
+
+
+    
