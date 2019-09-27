@@ -30,7 +30,7 @@ class ProductManager(models.Manager):
     def get_queryset(self):
         return ProductQuerySet(self.model,using=self._db)
     
-    def all():
+    def all(self):
         return self.get_queryset().active()
 
     def features(self):
@@ -45,13 +45,13 @@ class ProductManager(models.Manager):
 
 
 class Product(models.Model):
-    title = models.CharField(max_length=120)
+    title       = models.CharField(max_length=120)
     description = models.TextField()
-    price = models.DecimalField(decimal_places=2, max_digits=20 , default=39.99)
-    image = models.ImageField(upload_to=upload_image_path,null =True,blank=True)
-    featured = models.BooleanField(default=False)
-    active = models.BooleanField(default=True)
-    objects = ProductManager()
+    price       = models.DecimalField(decimal_places=2, max_digits=20 , default=39.99)
+    image       = models.ImageField(upload_to=upload_image_path,null =True,blank=True)
+    featured    = models.BooleanField(default=False)
+    active      = models.BooleanField(default=True)
+    objects     = ProductManager()
 
     def __str__(self):
         return self.title
