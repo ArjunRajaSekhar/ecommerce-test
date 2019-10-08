@@ -22,4 +22,5 @@ class SearchProductView(ListView):
         '''
         __icontains = field contains this
         __iexact = fields is exactly this
+        
         '''
