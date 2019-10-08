@@ -34,9 +34,10 @@ class ProductQuerySet(models.query.QuerySet):
     def search(self, query):
         lookups = (Q(title__icontains=query) | 
                   Q(description__icontains=query) |
-                  Q(price__icontains=query))
-        #Q(tag__name__icotains=query)
-        # tshirt, t-shirt, t shirt,
+                  Q(price__icontains=query) |
+                  Q(tag__title__icontains=query)
+                  )
+        # tshirt, t-shirt, t shirt, red, green, blue,
         return self.filter(lookups).distinct()
 
 class ProductManager(models.Manager):
@@ -87,6 +88,5 @@ def product_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 pre_save.connect(product_pre_save_receiver, sender=Product)
-
 
 
